@@ -1,12 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser, AbstractUser
+from django.contrib.auth.models import PermissionsMixin
 
 
 class UserAccountManager(BaseUserManager):
     def create_user(self, username, email, password=None, **Kwargs):
         if not email:
             raise ValueError('Users should had an email adress')
-        user = self.model(
+        user: User = self.model(
             username = username,
             email = self.normalize_email(email)
         )
@@ -26,7 +27,7 @@ class UserAccountManager(BaseUserManager):
         return user
 
 
-class User(AbstractBaseUser):
+class User(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(max_length=100, unique=True)
     email = models.EmailField(max_length=255, unique=True)
     last_login = models.DateField(blank=True, null=True)
@@ -35,6 +36,14 @@ class User(AbstractBaseUser):
     objects = UserAccountManager()
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username',]
+
+    @property
+    def is_staff(self):
+        return self.is_admin
+        
+    @property
+    def is_superuser(self):
+        return self.is_admin
 
     def __str__(self) -> str:
         return self.username

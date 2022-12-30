@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'authentication',
     'api',
 ]
@@ -124,4 +125,5 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_USER_MADEL = "authentication.User"
+AUTH_USER_MODEL = "authentication.User"
+AUTHENTICATION_BACKENDS =['authentication.utils.EmailBackendAuthentication']
