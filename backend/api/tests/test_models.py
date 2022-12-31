@@ -10,7 +10,7 @@ class TestTaskModel(TestCase):
         start_date = datetime(2022, 12, 27, 13, 45, 00)
 
         for i in range(10):
-            User.objects.create(
+            User.objects.create_user(
                 username=f"username_{i+1}",
                 email =f"username_{i+1}@gmail.com",
                 password =f"nivdyueri#{i+1}",

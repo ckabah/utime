@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, date, timedelta
 from rest_framework.generics import(
     ListCreateAPIView,
     RetrieveUpdateDestroyAPIView
@@ -7,14 +7,18 @@ from api.serializers.task_serializers import(
     TaskListSerializer,
     TaskDetailSerializer
 )
+from rest_framework.permissions import IsAuthenticated
 from ..models import Task
 
 
 class ListCreateTaskView(ListCreateAPIView):
     serializer_class = TaskListSerializer
     queryset = Task.objects.all()
+    permission_classes = [IsAuthenticated]
     def get_queryset(self):
-        today = datetime.today()
+        today = date.today()
+        today = datetime(today.year, today.month, today.day)
+        tomorow = today + timedelta(days=1)
         try:
             frequency = self.request.GET.get('frequency')
         except:
@@ -29,9 +33,9 @@ class ListCreateTaskView(ListCreateAPIView):
             return today_tasks
         if frequency == 'tomorow':
             tomorow_tasks = self.queryset.filter(
-                start_date__year = today.year,
-                start_date__month = today.month,
-                start_date__day = today.day +1
+                start_date__year = tomorow.year,
+                start_date__month = tomorow.month,
+                start_date__day = tomorow.day
             )
             return tomorow_tasks
         return super().get_queryset()
@@ -44,5 +48,6 @@ class ListCreateTaskView(ListCreateAPIView):
 
 class RetrieveUpdateDestroyTaskView(RetrieveUpdateDestroyAPIView):
     serializer_class = TaskDetailSerializer
+    permission_classes = [IsAuthenticated]
     queryset = Task.objects.all()
     lookup_field = 'pk'

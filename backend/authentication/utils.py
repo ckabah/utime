@@ -5,10 +5,10 @@ from django.db.models import Q
 
 UserModel = get_user_model()
 class EmailBackendAuthentication(ModelBackend):
-    def authenticate(self, request, username=None, password=None, **kwargs):
+    def authenticate(self, request, email=None, password=None, **kwargs):
         try:
             user = UserModel.objects.get(
-                Q(username__iexact=username) | Q(email__iexact=username)
+                Q(username__iexact=email) | Q(email__iexact=email)
             )
         except UserModel.DoesNotExist:
             UserModel().set_password(password)
@@ -16,7 +16,7 @@ class EmailBackendAuthentication(ModelBackend):
         except UserModel.MultipleObjectsReturned:
             user = (
                 UserModel.objects.filter(
-                    Q(username__iexact=username) | Q(email__iexact=username)
+                    Q(username__iexact=email) | Q(email__iexact=email)
                 )
                 .order_by("id")
                 .first()

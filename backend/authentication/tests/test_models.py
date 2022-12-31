@@ -1,6 +1,5 @@
 from django.test import TestCase
 from authentication.models import User
-import random
 
 
 class TestAuthenticationModel(TestCase):
@@ -48,7 +47,6 @@ class TestAuthenticationModel(TestCase):
         self.assertEqual(255, length)
 
     def test_email(self):
-        print(self.super_user.is_active)
         self.assertEqual(self.user.email, 'username_1@gmail.com')
     
     def test_user_isactive(self):
