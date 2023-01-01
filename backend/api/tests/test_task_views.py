@@ -42,7 +42,7 @@ class TestTaskViews(TestCase):
                 description=f"Today_task_decription",
                 start_date=self.today,
                 end_date=self.today + timedelta(hours=2),
-                user_id=2
+                user_id=self.user.pk
                 )
 
         self.tomorow_task: Task = Task.objects.create(
@@ -50,7 +50,7 @@ class TestTaskViews(TestCase):
                 description=f"Tomorow_task_decription",
                 start_date=self.tomorow,
                 end_date=self.tomorow+ timedelta(hours=2),
-                user_id=3
+                user_id=self.user.pk
                 )
         response= self.client.post(
             f'{self.token_obtain_url}',
@@ -123,13 +123,14 @@ class TestTaskViews(TestCase):
             'description':'descrition for django rest api',
             "start_date": "2022-12-30T12:00:00Z",
             "end_date": "2022-12-30T13:45:00Z",
-            'status':'TD',
-            'user':self.user.pk,
+            'status':'TD'
             }
         self.assertEqual(Task.objects.count(), 12)
         response = self.api_client.post(
             self.url, 
-            data=data)
+            data=data,
+            format='json'
+            )
         self.assertEqual(response.status_code, 201)
         self.assertEqual(Task.objects.count(), 13)
 
