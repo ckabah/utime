@@ -6,5 +6,5 @@ from api.views.task_views import(
 
 urlpatterns = [
     path('tasks/', ListCreateTaskView.as_view(), name='tasks'),
-    path('tasks/<int:pk>', RetrieveUpdateDestroyTaskView.as_view(), name='task_retreive'),
+    path('tasks/<int:pk>/', RetrieveUpdateDestroyTaskView.as_view(), name='task_retreive'),
 ]

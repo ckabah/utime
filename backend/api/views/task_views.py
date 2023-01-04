@@ -3,18 +3,19 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.generics import(
     ListCreateAPIView,
-    RetrieveUpdateDestroyAPIView
+    RetrieveUpdateDestroyAPIView,
+    
+    
     )
 from api.serializers.task_serializers import(
-    TaskListSerializer,
-    TaskDetailSerializer
+    TaskSerializer
 )
 from rest_framework.permissions import IsAuthenticated
 from ..models import Task
 
 
 class ListCreateTaskView(ListCreateAPIView):
-    serializer_class = TaskListSerializer
+    serializer_class = TaskSerializer
     permission_classes = [IsAuthenticated]
     def get_queryset(self):
         queryset = Task.objects.all().filter(user = self.request.user)
@@ -41,26 +42,12 @@ class ListCreateTaskView(ListCreateAPIView):
             )
             return tomorow_tasks
         return queryset
-
-    def get_serializer_class(self):
-        if self.request.method == 'POST':
-            return TaskDetailSerializer
-        return TaskListSerializer
-    
-    def create(self, request, *args, **kwargs):
-        data = request.data
-        # this for multipart data
-        # setattr(data, '_mutable', True)
-        data['user'] = self.request.user.id
-        serializer = self.get_serializer(data=data)
-        serializer.is_valid(raise_exception=True)
-        self.perform_create(serializer)
-        headers = self.get_success_headers(serializer.data)
-        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
-
+        
+    def perform_create(self, serializer):
+        serializer.save(user_id=self.request.user.id)
 
 class RetrieveUpdateDestroyTaskView(RetrieveUpdateDestroyAPIView):
-    serializer_class = TaskDetailSerializer
+    serializer_class = TaskSerializer
     permission_classes = [IsAuthenticated]
     queryset = Task.objects.all()
     lookup_field = 'pk'

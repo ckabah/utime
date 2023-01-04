@@ -73,6 +73,7 @@ class TestTaskViews(TestCase):
             'pk':obj.pk,
             'title':obj.title,
             'start_date':self.format_datetime(obj.start_date),
+            'description':obj.description,
             'end_date':self.format_datetime(obj.end_date),
             'status':obj.status
         }
@@ -88,7 +89,7 @@ class TestTaskViews(TestCase):
             'description':obj.description,
             'start_date':self.format_datetime(obj.start_date),
             'end_date':self.format_datetime(obj.end_date),
-            'user':obj.user.pk,
+            # 'user':obj.user.pk,
             'status':obj.status
         }
         return accepted_data
@@ -135,14 +136,14 @@ class TestTaskViews(TestCase):
         self.assertEqual(Task.objects.count(), 13)
 
     def test_task_detail_get(self):
-        response = self.api_client.get(f'{self.url}1')
+        response = self.api_client.get(f'{self.url}1/')
         self.assertEqual(response.status_code, 200)
-        accepted_data = self.generate_retreive_acceptad_data(self.task)
+        accepted_data = self.generate_acceptad_data(self.task)
         self.assertEqual(accepted_data, response.json())
     
     def test_task_detele(self):
         self.assertEqual(Task.objects.count(), 12)
-        response = self.api_client.delete(f'{self.url}1')
+        response = self.api_client.delete(f'{self.url}1/')
         self.assertEqual(response.status_code, 204)
         self.assertEqual(Task.objects.count(), 11)
     
@@ -154,9 +155,8 @@ class TestTaskViews(TestCase):
             "start_date": "2022-12-16T12:04:00Z",
             "end_date": "2022-12-16T12:05:00Z",
             "status": "TD",
-            "user": 1
         }
-        response = self.api_client.put(f'{self.url}1', data=data)
+        response = self.api_client.put(f'{self.url}1/', data=data)
         self.assertEqual(response.status_code, 200)
         task = Task.objects.get(pk=1)
         self.assertEqual(task.title, 'FastAPI')
