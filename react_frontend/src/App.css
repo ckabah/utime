@@ -1,0 +1,186 @@
+:root{
+  --bg-color:#f9f9f9ff;
+  --primary-color:#00b0ffff;
+  --second-color:#333333ff;
+}
+body{
+  background-color: var(--bg-color);
+}
+.dashbord{
+  margin: 0;
+  padding: 0;
+}
+.menu_btn{
+  top: 0;
+  margin: 5px;
+  width: 28px;
+  height: 28px;
+}
+.side{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(242, 242, 242, 0.30);
+  left: -100%;
+  transition: all 0.3s ease-out;
+}
+.sidebar{
+  top:0;
+  width: 90%;
+  background-color: #f2f2f2ff;
+  position: absolute;
+  height: 100%;
+  max-width: 320px;
+  padding: 12px;
+}
+.cancel_btn{
+  right: 0;
+  margin: 5px;
+  position: absolute;
+}
+.side-active{
+  left: 0;
+}
+.dash-container{
+  margin:0;
+  width: 100%;
+  padding:0 10px;
+}
+.task-container{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 644px;
+
+}
+
+
+
+
+.task-head{
+  border-bottom: 0.5px solid var(--second-color);
+}
+
+/* ############################## Task Card ########################### */
+
+.TD{
+  background-color: rgb(255, 8, 0, 0.45);
+  color:rgb(255, 8, 0, 0.85);
+}
+.DG{
+  background-color: rgb(255, 136, 0, 0.45);
+  color:rgb(255, 136, 0, 0.85);
+}
+.D{
+  background-color: rgba(125, 212, 12, 0.45);
+  color:rgb(125, 212, 12, 0.85);
+}
+.active-menu{
+  display: block;
+}
+
+.description{
+  display: none;
+}
+.active-description{
+  display: block;
+}
+
+/* ##################################### create Task ####################### */
+.task-form {
+  max-width: 520px;
+  margin: 0 auto;
+}
+.task-form input, .task-status{
+  height: 38px;
+  border: 1px solid var(--second-color);
+  color: var(--second-color);
+  padding: 0 4px;
+  border-radius: 5px;
+  outline: none;
+}
+
+.task-form label{
+  color: var(--second-color);
+  font-size: 14px;
+}
+.task-form button{
+  background-color: var(--primary-color);
+  height: 38px;
+  margin-top: 10px;
+  color: var(--bg-color);
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.task-form textarea{
+  border: 1px solid var(--second-color);
+  color: var(--second-color);
+  padding: 0 4px;
+}
+
+
+/* ############################## Login Register ######################" */
+
+.login-register{
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  max-width: 520px;
+}
+.login-register-form{                                                                                                                                                                                                                                                                                                                                          
+  padding: 20px;
+}
+.login-register-form input{
+  height: 38px;
+  border: 1px solid var(--second-color);
+  color: var(--second-color);
+  padding: 0 4px;
+  border-radius: 5px;
+  outline: none;
+}
+
+.login-register-form label{
+  color: var(--seconde-color);
+  font-size: 14px;
+}
+.login-register-form button{
+  background-color: var(--primary-color);
+  height: 38px;
+  margin-top: 10px;
+  color: var(--bg-color);
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.login-register-form textarea{
+  border: 1px solid var(--second-color);
+  color: var(--second-color);
+  padding: 0 4px;
+}
+
+
+@media (min-width: 1024px) {
+  .dashbord{
+    flex-direction: row;
+  }
+  .menu_btn, .cancel_btn{
+    display: none;
+  }
+  .side{
+    width: 320px;
+    max-width: 320;
+    left: 0;
+  }
+  .sidebar{
+    width: 100%;
+  }
+  .dash-container{
+    margin-left: 360px;
+    left: 360px;
+    margin-top: 20px;
+  }
+  .task-form {
+    margin: 0;
+  }
+}
