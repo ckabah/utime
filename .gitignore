@@ -8,20 +8,20 @@ __pycache__
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-/react_frontend/node_modules
-/react_frontend/.pnp
-/react_frontend.pnp.js
+/frontend/node_modules
+/frontend/.pnp
+/frontend.pnp.js
 # testing
-/react_frontend/coverage
+/frontend/coverage
 # production
-/react_frontend/build
+/frontend/build
 # misc
-/react_frontend/.DS_Store
-/react_frontend/.env.local
-/react_frontend/.env.development.local
-/react_frontend/.env.test.local
-/react_frontend/.env.production.local
+/frontend/.DS_Store
+/frontend/.env.local
+/frontend/.env.development.local
+/frontend/.env.test.local
+/frontend/.env.production.local
 
-/react_frontend/npm-debug.log*
-/react_frontend/yarn-debug.log*
-/react_frontend/yarn-error.log*
+/frontend/npm-debug.log*
+/frontend/yarn-debug.log*
+/frontend/yarn-error.log*
