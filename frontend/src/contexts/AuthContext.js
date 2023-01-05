@@ -11,9 +11,9 @@ export const AuthProvider = ({children}) =>{
     let [authTokens, setAuthTokens] = useState(()=> localStorage.getItem('authTokens') ? JSON.parse(localStorage.getItem('authTokens')) : null)
     let [user, setUser] = useState(()=>localStorage.getItem('authTokens') ? jwt_decode(localStorage.getItem('authTokens')) : null)
     let [loading, setLoading] = useState(true)
-
+    let [logionMessage, setLoginMessage] = useState('')
     
-    const  baseUrl = 'http://localhost:8000'
+    const  baseUrl = 'http://localhost:8002'
 
     let getToken = (e)=>{
         e.preventDefault()
@@ -25,6 +25,8 @@ export const AuthProvider = ({children}) =>{
                 setAuthTokens(response.data)
                 setUser(jwt_decode(response.data.access))
                 localStorage.setItem('authTokens', JSON.stringify(response.data))
+            }).catch((error)=>{
+                setLoginMessage(error.response.data.detail)
             })
         )
     }
@@ -43,7 +45,8 @@ export const AuthProvider = ({children}) =>{
         loading,
         getToken,
         baseUrl,
-        logoutUser
+        logoutUser,
+        logionMessage
     }
 
     useEffect(()=>{

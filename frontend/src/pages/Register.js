@@ -36,22 +36,22 @@ function Register() {
         <div className='flex flex-col'>
           <label htmlFor="username">Username</label>
           <span>{errorMessage.username}</span>
-          <input type="text" name="username"/>
+          <input type="text" name="username" required/>
         </div>
         <div className='flex flex-col'>
           <label htmlFor="email">Email</label>
           <span>{errorMessage.email}</span>
-          <input type="email" name="email"/>
+          <input type="email" name="email" required/>
         </div>
         <div className='flex flex-col'>
           <label htmlFor="username">Password</label>
           <span>{errorMessage.password}</span>
-          <input type="password" name="password"/>
+          <input type="password" name="password" required/>
         </div>
         <div className='flex flex-col'>
           <label htmlFor="password_confirm">Password Confirm</label>
           <span>{errorMessage.password2}</span>
-          <input type="password" name="password2"/>
+          <input type="password" name="password2" required/>
         </div>
         <button type="submit">Register</button>
         <div>
