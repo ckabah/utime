@@ -13,7 +13,7 @@ function CreateTask() {
     const addTask = (e)=>{
     
         e.preventDefault()
-        axios.post(`${baseUrl}/api/tasks/`,
+        axios.post(`${baseUrl}/tasks/`,
         {
             title:e.target.title.value,
             start_date:e.target.start_date.value,

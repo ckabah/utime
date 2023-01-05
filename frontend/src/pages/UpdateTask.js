@@ -52,7 +52,7 @@ function UpdateTask() {
     }
     useEffect(()=>{
         const getTask = ()=>{
-            axios.get(`${baseUrl}/api/tasks/${pk}/`,
+            axios.get(`${baseUrl}/tasks/${pk}/`,
                 {
                     headers:{
                         'Authorization':'Bearer '+ authTokens?.access

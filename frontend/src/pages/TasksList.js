@@ -13,7 +13,7 @@ function TasksList() {
 
     const handleDelete = (pk)=>{
         if(window.confirm("Are you sure you want to delete this task ?")){
-           axios.delete(`${baseUrl}/api/tasks/${pk}/`,{
+           axios.delete(`${baseUrl}/tasks/${pk}/`,{
             headers:{
                 'Authorization':'Bearer '+ authTokens?.access
             }
@@ -26,7 +26,7 @@ function TasksList() {
     useEffect(()=>{
         const getTasks = ()=>{
             return(
-                axios.get(`${baseUrl}/api/tasks/`,
+                axios.get(`${baseUrl}/tasks/`,
                 {
                     headers:{
                         'Authorization':`Bearer ${authTokens?.access}`

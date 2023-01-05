@@ -13,12 +13,12 @@ export const AuthProvider = ({children}) =>{
     let [loading, setLoading] = useState(true)
     let [logionMessage, setLoginMessage] = useState('')
     
-    const  baseUrl = 'http://localhost:8002'
+    const  baseUrl = 'https://utime.fitinite.com/api'
 
     let getToken = (e)=>{
         e.preventDefault()
         return (
-            axios.post(`${baseUrl}/api/token/`,{
+            axios.post(`${baseUrl}/token/`,{
                 email: e.target.username.value,
                 password: e.target.password.value,
             }).then((response) =>{
@@ -27,6 +27,7 @@ export const AuthProvider = ({children}) =>{
                 localStorage.setItem('authTokens', JSON.stringify(response.data))
             }).catch((error)=>{
                 setLoginMessage(error.response.data.detail)
+                console.log(error)
             })
         )
     }
@@ -51,7 +52,7 @@ export const AuthProvider = ({children}) =>{
 
     useEffect(()=>{
         const refreshToken = ()=>{
-            axios.post(`${baseUrl}/api/token/refresh/`,{
+            axios.post(`${baseUrl}/token/refresh/`,{
                 refresh: authTokens?.refresh
             }).then((response) =>{
                 setUser(jwt_decode(response.data.access))
