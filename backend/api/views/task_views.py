@@ -1,6 +1,7 @@
 from datetime import datetime, date, timedelta
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.decorators import api_view
 from rest_framework.generics import(
     ListCreateAPIView,
     RetrieveUpdateDestroyAPIView,
@@ -13,6 +14,19 @@ from api.serializers.task_serializers import(
 from rest_framework.permissions import IsAuthenticated
 from ..models import Task
 
+@api_view(['GET'])
+def home_view(request):
+    data  = {
+        'Message':'Well on Utime Api',
+        'Enpoint list':{
+            'api/':'This Home',
+            'api/auth/users/':'Create Acoount',
+            'api/token/':'Get authentication token',
+            'api/token/refresh,':'Refresh Authentication token',
+            'api/tasks/':'CRUD tasks - params: frequency : (api/tasks/?frequency=today or tomorow) - api/tasks/<int:pk> for retreive',
+        }
+        }
+    return Response(data)
 
 class ListCreateTaskView(ListCreateAPIView):
     serializer_class = TaskSerializer

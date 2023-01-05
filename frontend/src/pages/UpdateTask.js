@@ -16,7 +16,7 @@ function UpdateTask() {
 
     const updateTask = (e)=>{
         e.preventDefault()
-        axios.put(`${baseUrl}/api/tasks/${pk}/`,
+        axios.put(`${baseUrl}/tasks/${pk}/`,
         {
             title:task.title,
             start_date:task.start_date,

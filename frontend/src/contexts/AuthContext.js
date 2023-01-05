@@ -27,7 +27,6 @@ export const AuthProvider = ({children}) =>{
                 localStorage.setItem('authTokens', JSON.stringify(response.data))
             }).catch((error)=>{
                 setLoginMessage(error.response.data.detail)
-                console.log(error)
             })
         )
     }

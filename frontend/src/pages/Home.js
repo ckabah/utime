@@ -1,8 +1,12 @@
 import React from 'react'
+import { useContext } from 'react'
+import AuthContext from '../contexts/AuthContext'
+import {Navigate} from 'react-router-dom'
 
 function Home() {
+  let {user} = useContext(AuthContext)
   return (
-    <div>Home</div>
+    user ? <Navigate to='/dashbord'></Navigate>:<Navigate to='/login'></Navigate>
   )
 }
 

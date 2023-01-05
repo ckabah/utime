@@ -29,7 +29,5 @@ urlpatterns = [
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/', include('api.urls')),
     path('api/auth/', include('authentication.urls')),
-    re_path(r'^static/(?P<path>.*)$', serve, {'document_root':settings.STATIC_ROOT, 'show_indexes': False}),
+    re_path(r'^backend/static/(?P<path>.*)$', serve, {'document_root':settings.STATIC_ROOT, 'show_indexes': False}),
 ]
-if settings.DEBUG:
-    urlpatterns += static(settings.STATIC_URL , document_root = settings.STATIC_ROOT)

@@ -27,7 +27,7 @@ function CreateTask() {
         }
   
         ).then((response) =>{
-            setSuccessMessage(`${response.data.username} is create successfuly`)
+            setSuccessMessage('Task has created successfuly !!!')
         }
         ).catch((response)=>{
         setErrorMessage(response.response.data)
