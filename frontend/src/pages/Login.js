@@ -2,6 +2,7 @@ import React from 'react'
 import { useContext } from 'react'
 import AuthContext from '../contexts/AuthContext'
 import { Navigate, Link } from 'react-router-dom'
+import Logo from '../logo.svg'
 
 function Login() {
     let {getToken} = useContext(AuthContext)
@@ -10,7 +11,11 @@ function Login() {
   return (
     user ? <Navigate to='/dashbord'></Navigate>:
     <div className='login-register'>
-      <h2 className='font-bold text-center mt-16 mb-8 text-4xl'>Login</h2>
+      <div className='mx-4'>
+        <img className='h-20 mt-16' src={Logo} alt=""/>
+
+      </div>
+      <h2 className='font-bold text-center  my-4 text-4xl'>Login</h2>
         <form onSubmit={getToken} className='login-register-form flex flex-col px-6 gap-2'>
           <p className='text-red-500'>{logionMessage}</p>
           <div className='flex flex-col'>

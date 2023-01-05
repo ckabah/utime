@@ -23,6 +23,10 @@ body{
   background-color: rgba(242, 242, 242, 0.30);
   left: -100%;
   transition: all 0.3s ease-out;
+  list-style: none;
+}
+.side li:hover{
+  background-color: rgb(234, 234, 234)
 }
 .sidebar{
   top:0;

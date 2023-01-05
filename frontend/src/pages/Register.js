@@ -3,6 +3,7 @@ import axios from 'axios'
 import { useState , useContext,} from 'react'
 import AuthtContext from '../contexts/AuthContext'
 import { useNavigate , Link} from 'react-router-dom'
+import Logo from '../logo.svg'
 
 function Register() {
   const {baseUrl} = useContext(AuthtContext)
@@ -31,7 +32,11 @@ function Register() {
 
   return (
     <div className="login-register flex flex-col">
-      <h2 className='font-bold text-center mt-16 mb-8 text-4xl'>Register</h2>
+      <div className='mx-4'>
+        <img className='h-20 mt-16' src={Logo} alt=""/>
+
+      </div>
+      <h2 className='font-bold text-center  my-4 text-4xl'>Register</h2>
       <form onSubmit={registerUser} className="login-register-form flex flex-col px-6 gap-2">
         <div className='flex flex-col'>
           <label htmlFor="username">Username</label>
