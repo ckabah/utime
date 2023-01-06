@@ -25,7 +25,7 @@ function TodayTask() {
     useEffect(()=>{
         const getTodayTasks = ()=>{
             return(
-                axios.get(`${baseUrl}/api/tasks/`,
+                axios.get(`${baseUrl}/tasks/`,
                 {
                     headers:{
                         'Authorization':`Bearer ${authTokens?.access}`
